@@ -8,7 +8,7 @@
     <div class="card-body">
       <div class="form-group">
         <label for="name">Tên danh mục</label>
-        <input type="text" name="name" class="form-control" id="name" placeholder="Enter name">
+        <input type="text" name="name" class="form-control" id="name">
       </div>
 
       <div class="form-group">
@@ -45,6 +45,8 @@
     <div class="card-footer">
       <button type="submit" class="btn btn-primary">Tạo danh mục</button>
     </div>
+
+    @csrf
   </form>
 @endsection
 
