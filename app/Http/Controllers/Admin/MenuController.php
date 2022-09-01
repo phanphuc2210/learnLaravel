@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Menu\CreateFormRequest;
 use Illuminate\Http\Request;
 use App\Http\Services\Menu\MenuService;
-
+use Illuminate\Http\JsonResponse;
 
 class MenuController extends Controller
 {
@@ -39,5 +39,22 @@ class MenuController extends Controller
         $result = $this->menuService->create($req);
 
         return redirect()->back();
+    }
+
+     // [delete] /admin/menus/destroy
+     public function destroy(Request $req): JsonResponse{
+        
+        $result = $this->menuService->destroy($req);
+
+        if($result){
+            return response()->json([
+                'error'=>false,
+                'message'=>'Xóa thành công danh mục'
+            ]);
+        }
+
+        return response()->json([
+            'error'=>true
+        ]);
     }
 }
