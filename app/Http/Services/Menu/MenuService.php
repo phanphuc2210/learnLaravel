@@ -35,6 +35,26 @@ class MenuService
         return true;
     }
 
+    public function update($menu, $req) : bool{
+        // làm nhanh
+        // $menu->fill($req->input());
+        // $menu->save();
+
+        // làm thủ công
+        if($req->input('parent_id') != $menu->id){
+            $menu->parent_id = (int) $req->input('parent_id');
+        }
+            
+        $menu->name = (string) $req->input('name');
+        $menu->description = (string) $req->input('description');
+        $menu->content = (string) $req->input('content');
+        $menu->active = (string) $req->input('active');
+        $menu->save();
+
+        Session::flash('success', 'Cập nhật thành công danh mục');
+        return true;
+    }
+
     public function destroy($req){
         $id = (int)$req->input('id');
 

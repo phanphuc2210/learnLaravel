@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Menu\CreateFormRequest;
 use Illuminate\Http\Request;
 use App\Http\Services\Menu\MenuService;
+use App\Models\Menu;
 use Illuminate\Http\JsonResponse;
 
 class MenuController extends Controller
@@ -39,6 +40,22 @@ class MenuController extends Controller
         $result = $this->menuService->create($req);
 
         return redirect()->back();
+    }
+
+    // [get] /admin/menus/edit/{menu}
+    public function show(Menu $menu){
+        return view('admin.menu.edit', [
+            'title'=>'Chỉnh sửa danh mục: '. $menu->name,
+            'menu'=>$menu,
+            'menus'=>$this->menuService->getParent()
+        ]); 
+    }
+
+    // [post] /admin/menus/edit/{menu}
+    public function update(Menu $menu, CreateFormRequest $req){
+       $this->menuService->update($menu, $req);
+
+       return redirect('/admin/menus/list');
     }
 
      // [delete] /admin/menus/destroy
