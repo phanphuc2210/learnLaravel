@@ -17,6 +17,15 @@ class MenuController extends Controller
         $this->menuService = $menuService;
     }
 
+    // [get] /admin/menus/list
+    public function index(){
+        return view('admin.menu.list', [
+            'title'=>'Danh sách danh mục mới nhất',
+            'menus'=>$this->menuService->getAll()
+        ]);
+    }
+
+    // [get] /admin/menus/add
     public function create(){
         return view('admin.menu.add', [
             'title'=>'Thêm danh mục mới',
@@ -24,7 +33,9 @@ class MenuController extends Controller
         ]);
     }
 
+    // [post] /admin/menus/add
     public function store(CreateFormRequest $req){
+        
         $result = $this->menuService->create($req);
 
         return redirect()->back();

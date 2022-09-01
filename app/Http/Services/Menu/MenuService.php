@@ -8,6 +8,10 @@ use Illuminate\Support\Str;
 
 class MenuService
 {
+    public function getAll(){
+        return Menu::orderbyDesc('id')->paginate(20);
+    }
+    
     public function getParent(){
         return Menu::where('parent_id', 0)->get();
     }
@@ -19,7 +23,7 @@ class MenuService
                 'parent_id' => (int)$req->input('parent_id'),
                 'description' => (string)$req->input('description'),
                 'content' => (string)$req->input('content'),
-                'active' => (int)$req->input('active '),
+                'active' => (string)$req->input('active'),
             ]);
 
             Session::flash('success', 'Tạo danh mục thành công');
