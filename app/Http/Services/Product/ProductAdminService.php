@@ -55,4 +55,35 @@ class ProductAdminService{
         return true;
 
     }
+
+    public function update($req, $product){
+        $isValidPrice = $this->isValidPrice($req);
+        if($isValidPrice === false){
+            return false;
+        }
+
+        try {
+            $product->fill($req->input());
+            $product->save();
+
+            Session::flash('success', 'Cập nhật thành công');
+        } catch (\Exception $err) {
+            Session::flash('error', 'Có lỗi. Vui lòng thử lại');
+            Log::info($err->getMessage());
+            return false;
+        }
+
+        return true;
+        
+    }
+
+    public function delete($req){
+        $product = Product::where('id', $req->input('id'))->first();
+        if($product){
+            $product->delete();
+            return true;
+        }
+
+        return false;
+    }
 }
