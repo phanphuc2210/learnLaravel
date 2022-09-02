@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class ProductAdminService{
+    public function get(){
+        return Product::with('menu')
+            ->orderbyDesc('id')->paginate(15);
+    }
+
+
     public function getMenu(){
         return Menu::where('active', 1)->get();
     }
