@@ -59,7 +59,7 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/list', [SliderController::class, 'index']);
             Route::get('/edit/{slider}', [SliderController::class, 'show']);
             Route::post('/edit/{slider}', [SliderController::class, 'update']);
-            // Route::DELETE('/destroy', [SliderController::class, 'destroy']);
+            Route::DELETE('/destroy', [SliderController::class, 'destroy']);
         });
 
         // Upload

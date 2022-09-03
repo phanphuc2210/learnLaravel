@@ -67,4 +67,20 @@ class SliderController extends Controller
 
         return redirect()->back();
     }
+
+    // [delete] admin/sliders/destroy
+    public function destroy(Request $req){
+        $result = $this->sliderService->delete($req);
+
+        if($result){
+            return response()->json([
+                'error' => false,
+                'message' => 'Xóa thành công Slider'
+            ]);
+        }
+
+        return response()->json([
+            'error' => true
+        ]);
+    }
 }
