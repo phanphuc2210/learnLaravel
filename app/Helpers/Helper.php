@@ -51,6 +51,8 @@ class Helper {
                     <li>
                         <a href="/danh-muc/'. $menu->id .'-'. Str::slug($menu->name, '-') .'.html"> '. $menu->name .' </a>';
                 
+                unset($menus[$key]);
+
                 if(self::isParent($menus, $menu->id)){
                     $html .= '<ul class="sub-menu">';
                     $html .= self::menus($menus, $menu->id);
