@@ -51,7 +51,7 @@ class Helper {
                     <li>
                         <a href="/danh-muc/'. $menu->id .'-'. Str::slug($menu->name, '-') .'.html"> '. $menu->name .' </a>';
                 
-                if(self::isHasChild($menus, $menu->id)){
+                if(self::isParent($menus, $menu->id)){
                     $html .= '<ul class="sub-menu">';
                     $html .= self::menus($menus, $menu->id);
                     $html .= '</ul>';
@@ -64,7 +64,7 @@ class Helper {
         return $html;
     }
 
-    public static function isHasChild($menus, $id) {
+    public static function isParent($menus, $id) {
         foreach($menus as  $menu){
             if($menu->parent_id == $id){
                 return true;
