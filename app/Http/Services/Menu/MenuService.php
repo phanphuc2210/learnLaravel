@@ -72,6 +72,24 @@ class MenuService
         return false;
     }
 
+    public function getByID($id){
+        return Menu::where('id', $id)->where('active', 1)->firstOrFail();
+    }
 
+    public function getProduct($menu, $req){
+        $query =  $menu->products()
+            ->select('id', 'name', 'price', 'price_sale', 'thumb')
+            ->where('active', 1);
+            
+
+        if($req->input('price')){
+            $query->orderBy('price', $req->input('price'));
+        }
+            
+        
+        return $query->orderByDesc('id')
+            ->paginate(12)
+            ->withQueryString();
+    }
 
 }
