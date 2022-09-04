@@ -68,4 +68,4 @@ Route::middleware(['auth'])->group(function(){
 });
 
 Route::get('/', [ControllersMainController::class, 'index']);
-
+Route::post('/services/load-product', [ControllersMainController::class, 'loadProduct']);
