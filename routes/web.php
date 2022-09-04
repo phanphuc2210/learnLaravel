@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\Users\LoginController;
 use App\Http\Controllers\MainController as ControllersMainController;
 use App\Http\Controllers\MenuController as ControllersMenuController;
+use App\Http\Controllers\ProductController as ControllersProductController;
 use App\Http\Services\UploadService;
 use Illuminate\Support\Facades\Route;
 
@@ -72,3 +73,4 @@ Route::get('/', [ControllersMainController::class, 'index']);
 Route::post('/services/load-product', [ControllersMainController::class, 'loadProduct']);
 
 Route::get('danh-muc/{id}-{slug}.html', [ControllersMenuController::class, 'index']);
+Route::get('san-pham/{id}-{slug}.html', [ControllersProductController::class, 'index']);
