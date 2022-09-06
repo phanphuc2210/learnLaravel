@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CartController as AdminCartController;
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\ProductController;
@@ -65,6 +66,10 @@ Route::middleware(['auth'])->group(function(){
 
         // Upload
         Route::post('upload/services', [UploadController::class, 'store']);
+
+        //Cart
+        Route::get('/customers', [AdminCartController::class, 'index']);
+        Route::get('/customers/view/{customer}', [AdminCartController::class, 'show']);
     });
 
     
